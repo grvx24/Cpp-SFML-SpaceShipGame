@@ -1,0 +1,70 @@
+#pragma once
+#include "Spawner.h"
+#include "GameObjects.h"
+
+class Random_wave
+{
+public:
+
+	void generate_random_spawner(Enemy_spawner &spawner,Points &points,Enemy e1, Enemy e2, Enemy e3,Supplies_spawner &s1)
+	{
+		srand(time(0));
+
+		if (points.enemies_ready_for_boost)
+		{
+			e1.set_hp(e1.return_hp() * 2);
+			e2.set_hp(e1.return_hp() * 2);
+			e3.set_hp(e1.return_hp() * 2);
+
+			e1.set_damage(e1.return_damage() * 2);
+			e2.set_damage(e1.return_damage() * 2);
+			e3.set_damage(e1.return_damage() * 2);
+
+			e1.set_money_received(e1.return_money_received() * 2);
+			e2.set_money_received(e1.return_money_received() * 2);
+			e3.set_money_received(e1.return_money_received() * 2);
+
+			s1.increase_power(2);
+
+
+			points.enemies_ready_for_boost = false;
+		}
+	
+
+		std::vector<Enemy> temp_vector;
+		for (int i = 0; i < spawner.get_number_of_objects(); i++)
+		{
+			int rnd=rand()%3;
+			switch (rnd)
+			{
+			case 0:
+			{
+				e1.setPosition(rand() % 1440, 0);
+				temp_vector.push_back(e1);
+			}break;
+
+			case 1:
+			{
+				e2.setPosition(rand() % 1440, 0);
+				temp_vector.push_back(e2);
+			}break;
+
+			case 2:
+			{
+				e3.setPosition(rand() % 1440, 0);
+				temp_vector.push_back(e3);
+			}break;
+
+			}
+
+		}
+
+
+		spawner.change_objects(temp_vector);
+
+	}
+
+
+
+
+};
