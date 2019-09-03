@@ -1,2 +1,2 @@
 # SpaceShipGame
-My first simple game created in C++/SFML
+Simple Space-shooter created in C++/SFML
